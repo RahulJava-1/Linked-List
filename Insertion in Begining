@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+struct Node* InsertAtBegining(struct Node* head,int data){
+    struct Node* NN = (struct Node*)malloc(sizeof(struct Node));
+    NN->data=data;
+    NN->next=head;
+    
+    return NN;
+}
+
+void print(struct Node* n){
+    while(n!=NULL)
+    {
+        printf(" %d ",n->data);
+        n = n->next;
+    }
+}
+
+int main(int argc, char const *argv[])
+{
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));
+
+    head->data = 3;
+    head->next = second;
+
+    second->data = 4;
+    second->next = third;
+
+    third->data = 5;
+    third->next = NULL;
+
+    head=InsertAtBegining(head,8);
+    print(head);
+    return 0;
+}
