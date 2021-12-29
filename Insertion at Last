@@ -1,0 +1,51 @@
+#include<stdlib.h>
+#include<stdio.h>
+
+struct Node
+{
+    int data;
+    struct Node* next;
+};
+
+struct Node* InsertionAtLast(struct Node* head,int data)
+{
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data = data;
+    struct Node* p = head;
+    
+    while (p->next!=NULL)
+    {
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = NULL;
+    return head;
+}
+
+void print(struct Node* n)
+{
+    while (n!=NULL)
+    {
+        printf(" %d ",n->data);
+        n=n->next;
+    }    
+}
+int main(int argc, char const *argv[])
+{
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));    
+
+    head->data = 1;
+    head->next = second;
+
+    second->data = 2;
+    second->next = third;
+
+    third->data = 3;
+    third->next = NULL;
+
+    head = InsertionAtLast(head,55);
+    print(head);
+    return 0;
+}
