@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+//Insertion at Begining
+struct Node* InsertionAtBegining(struct Node* head,int data){
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    ptr->data=data;
+    ptr->next=head;
+    return ptr;
+}
+
+//Insertion in Middle
+struct Node* InsertionInMiddle(struct Node* head,int data,int index){
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* p = head;
+    int i = 0;
+    while (i!=index-1)
+    {
+        p=p->next;
+        i++;
+    }
+    ptr->next = p->next;
+    ptr->data = data;
+    p->next=ptr;
+    return head;
+}
+
+//Insertion at last
+struct Node* InsertionAtLast(struct Node* head,int data){
+    struct Node* ptr = (struct Node*)malloc(sizeof(struct Node));
+     ptr->data = data;
+    struct Node* temp = head;
+    while (temp->next!=NULL)
+    {
+        temp = temp->next;
+    }   
+    temp->next = ptr;
+    ptr->next = NULL;
+    return head;    
+}
+
+//Traversing the List
+void print(struct Node* n){
+    while(n!=NULL){
+        printf(" %d ",n->data);
+        n=n->next;
+    }
+}
+int main(int argc, char const *argv[])
+{
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* second = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* third = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* fourth = (struct Node*)malloc(sizeof(struct Node));
+
+    head->data=1;
+    head->next=second;
+
+    second->data=2;
+    second->next=third;
+
+    third->data=3;
+    third->next=fourth;
+
+    fourth->data=4;
+    fourth->next=NULL;   
+    printf("\n The List is \n");
+    print(head);
+    
+    //printf("\n Insertion at Begining\n");
+    //head = InsertionAtBegining(head,14);
+    //print(head);
+    //printf("\n Insertion in middle \n");
+    //head=InsertionInMiddle(head,14,2);
+    
+    printf("\n Insertion at Last \n");
+    head = InsertionAtLast(head,14);
+    print(head);
+    return 0;
+}
